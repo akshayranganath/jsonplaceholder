@@ -3,7 +3,7 @@ import logging
 import json
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
@@ -22,6 +22,7 @@ def make_request(url, method='get', data=None, headers=None):
                 data=data,
                 headers=headers
             )
+            logging.debug(resp)
             if resp.status_code == 201:
                 result = resp.json()
             else:
@@ -33,6 +34,7 @@ def make_request(url, method='get', data=None, headers=None):
                 data=data,
                 headers=headers
             )
+            logging.debug(resp)
             if resp.status_code == 200 or resp.status_code == 204:
                 result = resp.json()
             logging.debug(resp)
